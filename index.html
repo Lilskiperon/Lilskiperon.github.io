@@ -6,6 +6,13 @@
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:regular,500,600,700,800,900" rel="stylesheet" />
     <link rel="stylesheet" href="/css/style.css">
     <title>NedogaMassa</title>
+    <style>
+        .product { margin: 10px; padding: 15px; border: 1px solid #ccc; display: inline-block; width: 200px; }
+        .product img { width: 100%; }
+        .product h3 { font-size: 1.2em; }
+        .product p { font-size: 1em; }
+        .product .price { font-weight: bold; color: green; }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -103,7 +110,43 @@
             </div>
             </div>
         </div> 
-
     </section>
+    <div id="products-container"></div>
+    <script>
+        // Функция для загрузки товаров из API и генерации HTML
+        async function loadProducts() {
+            try {
+                // Запрашиваем данные о товарах из API
+                const response = await fetch('http://localhost:3000/api/products');
+                const products = await response.json();
+
+                // Контейнер для отображения товаров
+                const container = document.getElementById('products-container');
+
+                // Проходим по каждому товару и создаём HTML
+                products.forEach(product => {
+                    // Создаём div для каждого товара
+                    const productDiv = document.createElement('div');
+                    productDiv.classList.add('product');
+
+                    // Генерируем HTML контент для товара
+                    productDiv.innerHTML = `
+                        <img src="${product.ImageURL}" alt="${product.Name}">
+                        <h3>${product.Name}</h3>
+                        <p>${product.Description}</p>
+                        <p class="price">Цена: ${product.Price} руб.</p>
+                    `;
+
+                    // Добавляем div в контейнер
+                    container.appendChild(productDiv);
+                });
+            } catch (error) {
+                console.error('Ошибка при загрузке товаров:', error);
+            }
+        }
+
+        // Загружаем товары при загрузке страницы
+        loadProducts();
+    </script>
 </body>
 </html>
