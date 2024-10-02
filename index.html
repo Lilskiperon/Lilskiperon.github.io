@@ -113,40 +113,43 @@
     </section>
     <div id="products-container"></div>
     <script>
-        // Функция для загрузки товаров из API и генерации HTML
-        async function loadProducts() {
-            try {
-                // Запрашиваем данные о товарах из API
-                const response = await fetch('http://localhost:3000/api/products');
-                const products = await response.json();
-
-                // Контейнер для отображения товаров
-                const container = document.getElementById('products-container');
-
-                // Проходим по каждому товару и создаём HTML
-                products.forEach(product => {
-                    // Создаём div для каждого товара
-                    const productDiv = document.createElement('div');
-                    productDiv.classList.add('product');
-
-                    // Генерируем HTML контент для товара
-                    productDiv.innerHTML = `
-                        <img src="${product.ImageURL}" alt="${product.Name}">
-                        <h3>${product.Name}</h3>
-                        <p>${product.Description}</p>
-                        <p class="price">Цена: ${product.Price} руб.</p>
-                    `;
-
-                    // Добавляем div в контейнер
-                    container.appendChild(productDiv);
-                });
-            } catch (error) {
-                console.error('Ошибка при загрузке товаров:', error);
+            // Функция для загрузки товаров из API и генерации HTML
+            async function loadProducts() {
+                try {
+            // Запрашиваем данные о товарах из API
+            const response = await fetch('./connect.php');
+            if (!response.ok) {
+                throw new Error('Ошибка при загрузке товаров');
             }
-        }
 
-        // Загружаем товары при загрузке страницы
-        loadProducts();
+            const products = await response.json();
+
+            // Контейнер для отображения товаров
+            const container = document.getElementById('products-container');
+            container.innerHTML = "";  // Очищаем контейнер перед добавлением
+
+            // Проходим по каждому товару и создаём HTML
+            products.forEach(product => {
+                // Создаём div для каждого товара
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+
+                // Генерируем HTML контент для товара
+                productDiv.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p class="price">Цена: ${product.price} руб.</p>
+                `;
+
+                // Добавляем div в контейнер
+                container.appendChild(productDiv);
+            });
+        } catch (error) {
+            console.error('Ошибка при загрузке товаров:', error);
+        }
+        }
+        window.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
 </html>
