@@ -3,22 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:regular,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:regular,500,600,700,800,900" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/style.css">
     <title>NedogaMassa</title>
-    <style>
-        .product { margin: 10px; padding: 15px; border: 1px solid #ccc; display: inline-block; width: 200px; }
-        .product img { width: 100%; }
-        .product h3 { font-size: 1.2em; }
-        .product p { font-size: 1em; }
-        .product .price { font-weight: bold; color: green; }
-    </style>
 </head>
 <body>
     <div class="wrapper">
-        <div class="horizontal_line"></div>
-        <header class="header">
-        
+        <div style="top: 85px; position: absolute;" class="horizontal_line"></div>
+        <header>
             <div class="header__container _container">
                 <div class="nav_block" style="height: 85px;">
                 <div class="logo">
@@ -27,42 +19,67 @@
                 </div>
                 <div class="vertical_line"></div>
                 <div class="search-box">
-                    <input type="text" placeholder="Поиск">
-                    <button><img src="/assets/img/search-icon.png" alt="Search Icon"></button>
+                    <input type="text" id="productSearch" oninput="searchProducts()" placeholder="Введите название товара">
+                    <button>
+                        <svg class="svgicon">
+                            <use href="/assets/svg/sprite-icons.svg#icon-search"></use>
+                        </svg>
+                    </button>
                 </div>
+                <div id="results"></div>
                 <div class="vertical_line"></div>
                 <div class="icons_support">
-                <a><img src="/assets/img/imgemail-icon.png" alt="Email Icon"></a>
-                <a><img src="/assets/img/telegram-icon.png" alt="Telegram Icon"></a>
+                <a href="#">
+                    <svg class="svgicon">
+                        <use href="/assets/svg/sprite-icons.svg#icon-email"></use>
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg class="svgicon">
+                        <use href="/assets/svg/sprite-icons.svg#icon-telegram-blue"></use>
+                    </svg>
+                </a>
             </div>
             </div>
             <div class="nav_block" style="height: 55px;">
                 <div class="menu">
                     <ul>
-                        <div class="moreItems"><li><a href="#"><img src="/assets/img/more.png"><span>Каталог</spam></a></li></div>
-                        <li><a href="#">Оральные препараты</a></li>
-                        <li><a href="#">Инъекционные препараты</a></li>
-                        <li><a href="#">Препараты ПКТ</a></li>
-                        <li><a href="#">Гормон роста</a></li>
-                        <li><a href="#">Сармы/Sarms</a></li>
+                        <div class="moreItems"><li><a href="#">
+                            <svg class="svgicon">
+                                <use href="/assets/svg/sprite-icons.svg#icon-more-items"></use>
+                            </svg>
+                        <span>Каталог</spam></a></li></div>
+                        <li><a href="#">Протеиновые добавки</a></li>
+                        <li><a href="#">Аминокислоты</a></li>
+                        <li><a href="#">Витамины и минералы</a></li>
+                        <li><a href="#">Гейнеры</a></li>
+                        <li><a href="#">Жиросжигатели</a></li>
                     </ul>
                 </div>
                 <div class="icons">
-                    <div class="icon_border"></div>
-                    <img src="/assets/img/user-icon.png" alt =" User Icon">
-                    <div class="icon_border"></div>
-                    <img src="/assets/img/comparison-icon.png" alt =" Comparison Icon">
-                    <div class="icon_border"></div>
-                    <img src="/assets/img/favorites-icon.png" alt =" Favorites Icon">
-                    <div class="icon_border"></div>
+                    <span class="icon_border"></span>
+                    <svg class="svgicon">
+                        <use href="/assets/svg/sprite-icons.svg#icon-user"></use>
+                    </svg>
+                    <span class="icon_border"></span>
+                    <svg class="svgicon">
+                        <use href="/assets/svg/sprite-icons.svg#icon-comparison"></use>
+                    </svg>
+                    <span class="icon_border"></span>
+                    <svg class="svgicon">
+                        <use href="/assets/svg/sprite-icons.svg#icon-favorite"></use>
+                    </svg>
+                    <span class="icon_border"></span>
                     <div class="cart">
-                        <img src="/assets/img/cart-icon.png" alt="Cart Icon">
+                        <svg class="svgicon">
+                            <use href="/assets/svg/sprite-icons.svg#icon-cart"></use>
+                        </svg>
                         <div class="cartInfo">
-                        <span class="price_item">0 $</span>
-                        <span class="amount_items">0 товаров</span>
+                            <span class="price_item">0 $</span>
+                            <span class="amount_items">0 товаров</span>
                         </div>
                     </div>
-                    <div class="icon_border"></div>
+                    <span class="icon_border"></span>
                 </div>
             </div>
             </div>
@@ -74,7 +91,9 @@
                 <h2>Присоединяйтесь<br> к нашему сообществу<br> в Телеграмм!</h2>
                 <p>Более 3000 довольных клиентов оставляют свои видео-отзывы о нашей<br> продукции и делятся достижениями в спорте!</p>
                 <a href="#" class="telegram-btn">
-                    <img src="/assets/img/telegram-icon-white.png" alt="Telegram Icon">
+                    <svg>
+                        <use href="/assets/svg/sprite-icons.svg#icon-telegram-white"></use>
+                    </svg>
                     Telegram
                 </a>
             </div>
@@ -83,73 +102,145 @@
             </div>
         </div>
     </section>
+
     <section class="recommendation-section">
-        <div class="content">
-            <div class="collection-item">
-            <h2>НГМасса рекомендует</h2>
-            <div class="cards-list">
-                <div class="card productItem">
-                    <div class="cardImage">
-                        <div></div>
-                    </div>
-                    <div class="card-block">
-                        <div class="card productName"></div>
-                        <div class="card productCategory"></div>
-                        <div class="card productPrice"></div>
-                        <button>В корзину</button>
-                        <button>Подробнее</button>
-                    </div>
-                    <a class="ngmassa-favorite">
-                        <svg data-toggle="tooltip" class="svgicon svgicon-favorites-remove">
-                            <use href="as"></use>
-                        </svg>
-                    </a>
-                    <a class="ngmassa-comparison"></a>
+        <a class="scroll-control page-button">
+            <div id="prev-recommendation-page" class = "circle circle1">
+                <div class = "circle circle2">
+                    <svg class="svgiconarrow">
+                        <use href="/assets/svg/sprite-icons.svg#icon-left-arrow"></use>
+                   </svg>
                 </div>
-                
             </div>
+        </a>
+        <div class="content">
+            <div class="collection-item ">
+                <h2>НГМасса рекомендует</h2>
+                <div class="cards-list" id="recommendation-cards-list"></div>
+                <span class="page-list" id="recommendation-page-list"></span>
+                <script>
+                    fetch('assets/svg/ellipse.svg')
+                        .then(response => response.text())
+                        .then(svgContent => {
+                            document.getElementById('recommendation-page-list').innerHTML = svgContent;
+                            const circles = document.querySelectorAll('#recommendation-page-list circle');
+                            circles.forEach((circle, index) => {
+                                const pageNumber = index;
+                                circle.setAttribute('id', `recommendation-cards-list-circle${pageNumber}`);
+                                circle.addEventListener('click', () => changePage(pageNumber, 'recommendation-cards-list'));
+                            });
+                        });
+                </script>
             </div>
-        </div> 
+        </div>
+        <a class="scroll-control page-button">
+            <div id="next-recommendation-page" class = "circle circle1">
+                <div class = "circle circle2">
+                   <svg class="svgiconarrow">
+                        <use href="/assets/svg/sprite-icons.svg#icon-right-arrow"></use>
+                   </svg>
+                </div>
+            </div>
+        </a>
     </section>
-    <div id="products-container"></div>
-    <script>
-            // Функция для загрузки товаров из API и генерации HTML
-            async function loadProducts() {
-                try {
-            // Запрашиваем данные о товарах из API
-            const response = await fetch('./connect.php');
-            if (!response.ok) {
-                throw new Error('Ошибка при загрузке товаров');
-            }
-
-            const products = await response.json();
-
-            // Контейнер для отображения товаров
-            const container = document.getElementById('products-container');
-            container.innerHTML = "";  // Очищаем контейнер перед добавлением
-
-            // Проходим по каждому товару и создаём HTML
-            products.forEach(product => {
-                // Создаём div для каждого товара
-                const productDiv = document.createElement('div');
-                productDiv.classList.add('product');
-
-                // Генерируем HTML контент для товара
-                productDiv.innerHTML = `
-                    <img src="${product.imageUrl}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p class="price">Цена: ${product.price} руб.</p>
-                `;
-
-                // Добавляем div в контейнер
-                container.appendChild(productDiv);
-            });
-        } catch (error) {
-            console.error('Ошибка при загрузке товаров:', error);
-        }
-        }
-        window.addEventListener('DOMContentLoaded', loadProducts);
-    </script>
+    
+    <section class="novelty-section">
+        <a class="scroll-control page-button">
+            <div id="prev-novelty-page" class = "circle circle1">
+                <div class = "circle circle2">
+                    <svg class="svgiconarrow">
+                        <use href="/assets/svg/sprite-icons.svg#icon-left-arrow"></use>
+                   </svg>
+                </div>
+            </div>
+        </a>
+        <div class="content">
+            <div class="collection-item ">
+            <h2>Новинки</h2>
+            <div class="cards-list" id="novelty-cards-list"></div>
+            <span class="page-list" id="novelty-page-list"></span>
+            <script>
+                fetch('assets/svg/ellipse.svg')
+                    .then(response => response.text())
+                    .then(svgContent => {
+                        document.getElementById('novelty-page-list').innerHTML = svgContent;
+                        const circles = document.querySelectorAll('#novelty-page-list circle');
+                            circles.forEach((circle, index) => {
+                                const pageNumber = index;
+                                circle.setAttribute('id', `novelty-cards-list-circle${pageNumber}`);
+                                circle.addEventListener('click', () => changePage(pageNumber, 'novelty-cards-list'));
+                            });
+                    });
+            </script>
+            </div>
+        </div>
+        <a class="scroll-control page-button">
+            <div id="next-novelty-page" class = "circle circle1">
+                <div class = "circle circle2">
+                   <svg class="svgiconarrow">
+                        <use href="/assets/svg/sprite-icons.svg#icon-right-arrow"></use>
+                   </svg>
+                </div>
+            </div>
+        </a>
+    </section>
+    <div class="wrapper">
+        <div class="horizontal_line"></div>
+        <footer>
+            <div class="footer__container _container">
+                <div class="footer__section">
+                    <h3>Интернет-магазин RU-MASSA</h3>
+                    <p>Магазин спортивной фармакологии с доставкой из России в Москву, Санкт-Петербург и другие города. Так же доставляем в любую точку мира.</p>
+                </div>
+                <div class="footer__section">
+                    <h3>Категории</h3>
+                    <ul>
+                        <li><a href="#">Протеиновые добавки</a></li>
+                        <li><a href="#">Аминокислоты</a></li>
+                        <li><a href="#">Витамины и минералы</a></li>
+                        <li><a href="#">Гейнеры</a></li>
+                        <li><a href="#">Жиросжигатели</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section"> 
+                    <h3>Как оформить заказ</h3>
+                    <ul>
+                        <li><a href="#">Оплата</a></li>
+                        <li><a href="#">Доставка</a></li>
+                        <li><a href="#">Обмен и возрат</a></li>
+                        <li><a href="#">Отзывы</a></li>
+                        <li><a href="#">Скидки</a></li>
+                        <li><a href="#">Новости</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h3>Новости</h3>
+                    <p>Смена домена, новый адрес <a href="https://ru-massa.info">ru-massa.info</a></p>
+                </div>
+                <div class="footer__section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Телефон: +7 (567) 439-82-34</li>
+                        <li>Email: <a href="mailto:rumassa13@gmail.com">rumassa13@gmail.com</a></li>
+                        <li>Telegram для заказа: <a href="https://t.me/Rumassa_bot">@Rumassa_bot</a></li>
+                        <li>Telegram консультант: <a href="https://t.me/consultant_rumassa">@consultant_rumassa</a></li>
+                        <li>Telegram канал: <a href="https://t.me/Rumassa">@Rumassa</a></li>
+                        <li><a href="#">Новости в Telegram</a></li>
+                        <li><a href="#">Чат в Telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <div class="horizontal_line"></div>
+        <div class="footer__container _container footer__copyright">
+            <p>© Copyright 2022</p>
+            <a href="#">Политика конфиденциальности</a>
+        </div>
+    </div>
+    <div id="scrollTopBtn" onclick="scrollToTop()">&#8679;</div>
+    <script src="js/searchProduct.js"></script>
+    <script src="js/uploadProduct.js" ></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -46,7 +46,85 @@ body{
     max-width: 1381px;
     margin: 0px auto;
 }
+@font-face {
+    font-family: "JermilovSolid";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/fonts/JermilovSolid.woff2") format("woff2"),
+         url("/fonts/JermilovSolid.woff") format("woff");
+  }
+  
+.svgicon {
+    width: 24px;
+    height: 24px;
+}
+
 /*---------------BASIC-----------------*/
+
+/*---------------SEARCH-----------------*/
+#results {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none; /* Скрыт по умолчанию */
+  }
+
+  /* Стиль каждого элемента продукта */
+  .product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+  }
+
+  .product-item:last-child {
+    border-bottom: none;
+  }
+
+  .product-item:hover {
+    background-color: #f9f9f9;
+  }
+
+  /* Стиль изображения продукта */
+  .product-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  /* Стиль информации о продукте */
+  .product-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-name {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .product-price {
+    color: #888;
+    font-size: 14px;
+  }
+
+  .product-description {
+    color: #555;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+/*--------------------------------------*/
 
 /*---------------HEADER-----------------*/
 * {
@@ -124,6 +202,7 @@ header {
     text-decoration: underline;
 }
 
+
 .search-box {
     width: 70%;
     display: flex;
@@ -135,7 +214,7 @@ header {
     padding: 14px;
     width: 100%;
     border: 1px solid #ddd;
-    border-radius: 10px; /* Уменьшаем радиус закругления */
+    border-radius: 10px; 
 }
 
 .search-box button {
@@ -146,7 +225,7 @@ header {
     cursor: pointer;
 }
 
-.search-box img {
+.search-box svg {
     height: 20px;
     margin: 0 5px;
 }
@@ -156,10 +235,14 @@ header {
     align-items: center;
 }
 
-.icons img {
+.icons svg {
     width: 24px;
     margin: 0 10px;
     cursor: pointer;
+    fill: #303030;
+}
+.icons .svgicon:hover{
+    fill: #BB9B75;
 }
 
 .icons_support {
@@ -172,8 +255,9 @@ header {
     border: 1px solid #DFDFDF;
 }
 
-.icons_support img {
+.icons_support svg {
     width: 26px;
+    height: 26px;
     cursor: pointer;
     margin: 8px;
 }
@@ -185,10 +269,9 @@ header {
 }
 
 .horizontal_line {
-    position: absolute;
     width: 100%;
     border-bottom: 1px solid #DFDFDF;
-    top: 85px;
+
 }
 
 .icon_border {
@@ -211,28 +294,31 @@ header {
     flex-direction: column;
     gap: 2px;
 }
+
 .amount_items{
     color: #A4A4A4;
 }
 
-.moreItems {
+.moreItems{
     align-content: center;
     height: 100%;
     width: 155px;
     background: linear-gradient(90deg, rgba(207,174,135,1) 0%, rgba(164,129,89,1) 100%);
 }
 
-.moreItems span {
+.moreItems span{
     color: #FFFFFF;
-    padding-left: 10px;
+    align-self: center;
 }
 
-.moreItems img {
+.moreItems svg{
     height: 30px;
     vertical-align: middle;
+    margin-right: 10px;
+    
 }
 
-.icons_container {
+.icons_container{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -265,18 +351,7 @@ header {
     margin: 0 auto;
 }
 
-.telegram-section .text-block {
-    max-width: 1300px;
-}
-@font-face {
-    font-family: "JermilovSolid";
-    font-style: normal;
-    font-weight: normal;
-    src: url("/fonts/JermilovSolid.woff2") format("woff2"),
-         url("/fonts/JermilovSolid.woff") format("woff");
-  }
 .telegram-section .text-block h2 {
-
     font-size: 80px;
     color: #000;
     margin-bottom: 20px;
@@ -302,11 +377,11 @@ header {
     display: flex;
     align-items: center;
     text-decoration: none;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.685);
+    box-shadow: rgba(3, 155, 229, 0.5) 0px 10px 36px 0px, rgba(3, 155, 229, 0.6) 0px 0px 0px 1px;
     transition: background-color 0.3s ease;
 }
 
-.telegram-section .telegram-btn img {
+.telegram-section .telegram-btn svg {
     width: 20px;
     margin-right: 5px;
 }
@@ -326,3 +401,329 @@ header {
 }
 
 /*---------------FIRST BLOCK----------------*/
+
+/*---------------SECOND BLOCK----------------*/
+.recommendation-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0  60px 0;
+    
+}
+
+.recommendation-section .сontent{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0px;
+    margin: 0 auto;
+    max-width: 1300px;
+}
+
+.collection-item {
+    max-width: 1300px;
+    text-align: center;
+}
+
+.collection-item h2 {
+    display: flex;
+    font-size: 60px;
+    color: #000;
+    margin: 20px 0;
+    font-weight: bold;
+    font-family:JermilovSolid;
+}
+
+.cards-list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.card {
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: left;
+    width: 250px;
+}
+
+
+.card img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.text-block{
+    padding: 0 10px 10px;
+}
+
+.card h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.card p{
+    font-size: 14px;
+    color: #777;
+    margin: 10px 0;
+}
+
+.productPrice {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0;
+}
+
+.card button {
+    width: 100%;
+    background-color: #c5a880;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.text-block button:hover {
+    background-color: #b4905a;
+}
+
+
+.scroll-control{
+    padding: 20px;
+}
+
+.circle{
+    border-radius: 50%; 
+    display: flex;
+    cursor: pointer; 
+}
+.circle1{
+    width: 60px;
+    height: 60px;
+    background-color: #FFF;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+.scroll-control .circle1:active{
+    box-shadow:rgba(166, 131, 90, 0.541) 0px 1px 2px, rgba(166, 131, 90, 0.541) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(166, 131, 90, 0.541) 0px 16px 32px, rgba(166, 131, 90, 0.623) 0px 32px 64px; ;
+}
+.circle2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: #F8F8F8;
+    align-items: center;
+    justify-content: center;
+}
+
+.svgiconarrow{
+    height: 19px;
+    width: 11px;
+    fill:#BB9B75 ;
+}
+
+.circle1:hover{
+    .circle2{
+        background: linear-gradient(90deg, #A6835A 0%, #D2B490 100%);
+    }
+
+    .circle2 svg{
+        transition: fill 0.2s ease-in-out;
+        fill: #FFFFFF;
+    }
+}
+
+.circle1.disabled {
+    background-color: #E0E0E0;
+    
+}
+
+.circle1.disabled .circle2 {
+    background-color: #F0F0F0; /
+}
+
+.circle1.disabled .svgiconarrow {
+    fill: #B0B0B0; 
+}
+
+.circle1.disabled:hover {
+
+    .circle2{
+        background: #F0F0F0;
+    }
+    .circle2 svg{
+        fill: #B0B0B0;
+    }
+}
+
+.circle1.disabled:active{
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+#list-page circle{
+    transition: fill-opacity 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card .ngmassa-favorite, .ngmassa-comparison {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.ngmassa-favorite, .ngmassa-comparison svg{
+    cursor: pointer;
+}
+.ngmassa-comparison{
+    margin-top: 40px;
+    stroke:#303030;
+    stroke-width: 0.5px;
+}
+.svgicon-favorites-remove{
+    stroke:#303030;
+    stroke-width: 8;
+    fill:none;
+}
+
+.svgicon-favorites-remove:hover{
+    stroke:#BB9B75;
+}
+.svgicon-favorites-add{
+    stroke:#303030;
+    stroke-width: 8;
+    fill:#ff073a;
+}
+.svgicon-favorites-add:hover{
+    fill: #d7d7d7;
+}
+
+.svgicon-comparison-remove{
+    stroke:#303030;
+    stroke-linecap:round;
+    fill:none;
+}
+.svgicon-comparison-remove:hover{
+    stroke:#BB9B75;
+}
+.svgicon-comparison-add{
+    fill:#BB9B75;
+}
+.svgicon-comparison-add:hover{
+    fill: #d7d7d7;
+}
+
+/*---------------SECOND BLOCK----------------*/
+.novelty-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0  60px 0;
+    
+}
+.novelty-section .сontent{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0px;
+    margin: 0 auto;
+    max-width: 1300px;
+}
+#scrollTopBtn {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    display: none;
+    font-size: 36px;
+    background-color: #303030;
+    color: #BB9B75; 
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0.7;
+  }
+  
+  #scrollTopBtn:hover {
+    opacity: 1;
+  }
+/*--------------------------------------*/
+/*---------------Footer BLOCK----------------*/
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 0 30px;
+    border-bottom: 1px solid #ddd;
+}
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    flex-wrap: nowrap; 
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.footer__section {
+    width: 18%;
+    margin-right: 20px;
+}
+
+.footer__section:last-child {
+    margin-right: 0;
+ }
+.footer__section h3 {
+    font-size: 16px;
+    margin-bottom: 15px; 
+    color: #303030;
+    font-weight: bold;
+}
+
+.footer__section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer__section ul li {
+    margin-bottom: 10px;
+}
+
+.footer__section a {
+    color: #777;
+    text-decoration: none;
+}
+
+.footer__section a:hover {
+    text-decoration: underline;
+}
+
+.footer__section p {
+    color: #777;
+}
+
+.footer__copyright a {
+    color: #888;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer__copyright a:hover {
+    text-decoration: underline;
+}
+
+/*--------------Footer BLOCK----------------*/
