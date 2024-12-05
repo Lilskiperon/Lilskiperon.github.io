@@ -6,7 +6,7 @@ const totalPages = 4;
 
 
 async function loadRecommendationProducts() {
-    const response = await fetch('http://localhost:3300/products');
+    const response = await fetch('http://localhost:3300/product');
     if (!response.ok) {
         throw new Error('Ошибка при загрузке товаров');
     }
@@ -19,7 +19,7 @@ async function loadRecommendationProducts() {
 }
 
 async function loadNoveltyProducts() {
-    const response = await fetch('http://localhost:3300/products');
+    const response = await fetch('http://localhost:3300/product');
     if (!response.ok) {
         throw new Error('Ошибка при загрузке товаров');
     }

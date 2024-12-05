@@ -22,6 +22,7 @@ async function searchProducts() {
         products.forEach(product => {
           const div = document.createElement('div');
           div.classList.add('product-item');
+          div.setAttribute("id",product.id);
           div.innerHTML = `
             <img src="${product.imageUrl}" alt="${product.name}">
             <div class="product-info">

@@ -26,17 +26,17 @@ db.connect((err) => {
 app.use(cors());
 
 // Роут для запроса данных
-app.get('/products', (req, res) => {
-  db.query('SELECT * FROM Product', (err, result) => {
+app.get('/product', (req, res) => {
+  db.query('SELECT * FROM product', (err, result) => {
     if (err) {
       return res.status(500).send(err.message);
     }
     const products = result.map(row => ({
-      id: row.ProductID,
-      name: row.Name,
-      price: row.Price,
-      imageUrl: row.ImageURL,
-      description: row.Description
+      id: row.productId,
+      name: row.productName,
+      price: row.nutritionalValue,
+      imageUrl: row.productImageurl,
+      description: row.description
     }));
 
     res.json(products);
@@ -52,19 +52,28 @@ app.get('/search', (req, res) => {
   }
 
   // Вызов хранимой процедуры takeNameProduct
-  db.query('CALL takeNameProduct(?)', [productName], (err, results) => {
+  db.query('SELECT * FROM product WHERE productName LIKE ?', [`%${productName}%`], (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
 
+    // Проверяем, что результаты существуют
+    if (!results || results.length === 0 || !results[0]) {
+      return res.status(404).json({ error: 'Продукты не найдены' });
+    }
+
     // Преобразуем результат
-    const products = results[0].map(row => ({
-      id: row.FlatID,
-      name: row.Name,
-      price: row.Price,
-      imageUrl: row.ImageURL,
-      description: row.Description
-    }));
+    const products = results.map(row => ({
+      id: row.productId,            
+      name: row.productName,       
+      price: row.nutritionalValue,  
+      imageUrl: row.productImageurl
+  }));
+
+    // Проверяем, есть ли продукты для возврата
+    if (products.length === 0) {
+      return res.status(404).json({ error: 'Нет продуктов, соответствующих запросу' });
+    }
 
     res.json(products);
   });
