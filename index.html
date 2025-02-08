@@ -3,245 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:regular,500,600,700,800,900" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <title>NedogaMassa</title>
+    <title>LoveGram - Поздравь с 14 февраля</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe4e6;
+        }
+        .heart-background {
+            background-image: url('https://www.transparenttextures.com/patterns/heart-pattern.png');
+        }
+    </style>
 </head>
-<body>
-    <div id="results"></div>
-    <div class="wrapper">
-        <div style="top: 85px; position: absolute;" class="horizontal_line"></div>
-        <header>
-            <div class="header__container _container">
-                <div class="nav_block" style="height: 85px;">
-                <div class="logo">
-                    <img src="/assets/img/logoSite.png" alt="Logo">
-                    <div class="text_logo"><h1>Интернет-магазин</h1><h1> <b>NG-MASSA</b></h1></div>
-                </div>
-                <div class="vertical_line"></div>
-                <div class="search-box">
-                    <input type="text" id="productSearch" oninput="searchProducts()" placeholder="Введите название товара">
-                    <button>
-                        <svg class="svgicon">
-                            <use href="/assets/svg/sprite-icons.svg#icon-search"></use>
-                        </svg>
-                    </button>
-                    
-                </div>
-                <div class="vertical_line"></div>
-                <div class="icons_support">
-                <a href="#">
-                    <svg class="svgicon">
-                        <use href="/assets/svg/sprite-icons.svg#icon-email"></use>
-                    </svg>
-                </a>
-                <a href="#">
-                    <svg class="svgicon">
-                        <use href="/assets/svg/sprite-icons.svg#icon-telegram-blue"></use>
-                    </svg>
-                </a>
-            </div>
-            </div>
-            <div class="nav_block" style="height: 55px;">
-                <div class="menu">
-                    <ul>
-                        <div class="moreItems"><li><a href="#">
-                            <svg class="svgicon">
-                                <use href="/assets/svg/sprite-icons.svg#icon-more-items"></use>
-                            </svg>
-                        <span>Каталог</spam></a></li></div>
-                        <li><a href="#">Протеиновые добавки</a></li>
-                        <li><a href="#">Аминокислоты</a></li>
-                        <li><a href="#">Витамины и минералы</a></li>
-                        <li><a href="#">Гейнеры</a></li>
-                        <li><a href="#">Жиросжигатели</a></li>
-                    </ul>
-                </div>
-                <div class="icons">
-                    <span class="icon_border"></span>
-                    <svg class="svgicon">
-                        <use href="/assets/svg/sprite-icons.svg#icon-user"></use>
-                    </svg>
-                    <span class="icon_border"></span>
-                    <svg class="svgicon">
-                        <use href="/assets/svg/sprite-icons.svg#icon-comparison"></use>
-                    </svg>
-                    <span class="icon_border"></span>
-                    <svg class="svgicon">
-                        <use href="/assets/svg/sprite-icons.svg#icon-favorite"></use>
-                    </svg>
-                    <span class="icon_border"></span>
-                    <div class="cart">
-                        <svg class="svgicon">
-                            <use href="/assets/svg/sprite-icons.svg#icon-cart"></use>
-                        </svg>
-                        <div class="cartInfo">
-                            <span class="price_item">0 $</span>
-                            <span class="amount_items">0 товаров</span>
-                        </div>
-                    </div>
-                    <span class="icon_border"></span>
-                </div>
-            </div>
-            </div>
-        </header>
-    </div>
-    <section class="telegram-section">
-        <div class="content">
-            <div class="text-block">
-                <h2>Присоединяйтесь<br> к нашему сообществу<br> в Телеграмм!</h2>
-                <p>Более 3000 довольных клиентов оставляют свои видео-отзывы о нашей<br> продукции и делятся достижениями в спорте!</p>
-                <a href="#" class="telegram-btn">
-                    <svg>
-                        <use href="/assets/svg/sprite-icons.svg#icon-telegram-white"></use>
-                    </svg>
-                    Telegram
-                </a>
-            </div>
-            <div class="image-block">
-                <img src="/assets/img/muscle-man3.png" alt="Muscle Man">
+<body class="flex flex-col items-center justify-center min-h-screen heart-background">
+    <div class="max-w-lg w-full bg-white shadow-xl rounded-2xl p-6 text-center">
+        <h1 class="text-3xl font-bold text-pink-600">LoveGram 💖</h1>
+        <p class="mt-2 text-gray-700">Создай персональное поздравление для своей второй половинки!</p>
+        <form id="cardForm" class="mt-4">
+            <input type="text" id="recipientName" placeholder="Имя получателя" class="w-full p-2 border rounded-md mb-4" required>
+            <textarea id="personalMessage" placeholder="Твое сообщение..." class="w-full p-2 border rounded-md mb-4" required></textarea>
+            <input type="file" id="imageUpload" accept="image/*" class="w-full p-2 border rounded-md mb-4">
+            <button type="submit" class="w-full bg-pink-500 text-white py-2 rounded-md">Создать поздравление</button>
+        </form>
+        <div id="cardPreview" class="mt-6 hidden">
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <h2 id="cardRecipient" class="text-2xl font-semibold text-pink-700"></h2>
+                <p id="cardMessage" class="mt-2 text-gray-800"></p>
+                <img id="cardImage" class="mt-4 rounded-lg hidden" alt="Загруженное изображение">
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="recommendation-section">
-        <a class="scroll-control page-button">
-            <div id="prev-recommendation-page" class = "circle circle1">
-                <div class = "circle circle2">
-                    <svg class="svgiconarrow">
-                        <use href="/assets/svg/sprite-icons.svg#icon-left-arrow"></use>
-                   </svg>
-                </div>
-            </div>
-        </a>
-        <div class="content">
-            <div class="collection-item ">
-                <h2>НГМасса рекомендует</h2>
-                <div class="cards-list" id="recommendation-cards-list"></div>
-                <span class="page-list" id="recommendation-page-list"></span>
-                <script>
-                    fetch('assets/svg/ellipse.svg')
-                        .then(response => response.text())
-                        .then(svgContent => {
-                            document.getElementById('recommendation-page-list').innerHTML = svgContent;
-                            const circles = document.querySelectorAll('#recommendation-page-list circle');
-                            circles.forEach((circle, index) => {
-                                const pageNumber = index;
-                                circle.setAttribute('id', `recommendation-cards-list-circle${pageNumber}`);
-                                circle.addEventListener('click', () => changePage(pageNumber, 'recommendation-cards-list'));
-                            });
-                        });
-                </script>
-            </div>
-        </div>
-        <a class="scroll-control page-button">
-            <div id="next-recommendation-page" class = "circle circle1">
-                <div class = "circle circle2">
-                   <svg class="svgiconarrow">
-                        <use href="/assets/svg/sprite-icons.svg#icon-right-arrow"></use>
-                   </svg>
-                </div>
-            </div>
-        </a>
-    </section>
-    
-    <section class="novelty-section">
-        <a class="scroll-control page-button">
-            <div id="prev-novelty-page" class = "circle circle1">
-                <div class = "circle circle2">
-                    <svg class="svgiconarrow">
-                        <use href="/assets/svg/sprite-icons.svg#icon-left-arrow"></use>
-                   </svg>
-                </div>
-            </div>
-        </a>
-        <div class="content">
-            <div class="collection-item ">
-            <h2>Новинки</h2>
-            <div class="cards-list" id="novelty-cards-list"></div>
-            <span class="page-list" id="novelty-page-list"></span>
-            <script>
-                fetch('assets/svg/ellipse.svg')
-                    .then(response => response.text())
-                    .then(svgContent => {
-                        document.getElementById('novelty-page-list').innerHTML = svgContent;
-                        const circles = document.querySelectorAll('#novelty-page-list circle');
-                            circles.forEach((circle, index) => {
-                                const pageNumber = index;
-                                circle.setAttribute('id', `novelty-cards-list-circle${pageNumber}`);
-                                circle.addEventListener('click', () => changePage(pageNumber, 'novelty-cards-list'));
-                            });
-                    });
-            </script>
-            </div>
-        </div>
-        <a class="scroll-control page-button">
-            <div id="next-novelty-page" class = "circle circle1">
-                <div class = "circle circle2">
-                   <svg class="svgiconarrow">
-                        <use href="/assets/svg/sprite-icons.svg#icon-right-arrow"></use>
-                   </svg>
-                </div>
-            </div>
-        </a>
-    </section>
-    <div class="wrapper">
-        <div class="horizontal_line"></div>
-        <footer>
-            <div class="footer__container _container">
-                <div class="footer__section">
-                    <h3>Интернет-магазин Ng-MASSA</h3>
-                    <p>Магазин спортивной фармакологии с доставкой из Украины в Одессу, Киев и другие города. Так же доставляем в любую точку мира.</p>
-                </div>
-                <div class="footer__section">
-                    <h3>Категории</h3>
-                    <ul>
-                        <li><a href="#">Протеиновые добавки</a></li>
-                        <li><a href="#">Аминокислоты</a></li>
-                        <li><a href="#">Витамины и минералы</a></li>
-                        <li><a href="#">Гейнеры</a></li>
-                        <li><a href="#">Жиросжигатели</a></li>
-                    </ul>
-                </div>
-                <div class="footer__section"> 
-                    <h3>Как оформить заказ</h3>
-                    <ul>
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Доставка</a></li>
-                        <li><a href="#">Обмен и возрат</a></li>
-                        <li><a href="#">Отзывы</a></li>
-                        <li><a href="#">Скидки</a></li>
-                        <li><a href="#">Новости</a></li>
-                        <li><a href="#">Контакты</a></li>
-                    </ul>
-                </div>
-                <div class="footer__section">
-                    <h3>Новости</h3>
-                    <p>Смена домена, новый адрес <a href="https://ng-massa.info">ng-massa.info</a></p>
-                </div>
-                <div class="footer__section">
-                    <h3>Контакты</h3>
-                    <ul>
-                        <li>Телефон: +380865533214</li>
-                        <li>Email: <a href="mailto:ngmassa13@gmail.com">ngmassa13@gmail.com</a></li>
-                        <li>Telegram для заказа: <a href="https://t.me/Ngmassa_bot">@Ngmassa_bot</a></li>
-                        <li>Telegram консультант: <a href="https://t.me/mrbebrq">@mrbebrq</a></li>
-                        <li>Telegram канал: <a href="https://t.me/Ngmassa">@Ngmassa</a></li>
-                        <li><a href="#">Новости в Telegram</a></li>
-                        <li><a href="#">Чат в Telegram</a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-        <div class="horizontal_line"></div>
-        <div class="footer__container _container footer__copyright">
-            <p>© Copyright 2022</p>
-            <a href="#">Политика конфиденциальности</a>
-        </div>
-    </div>
-    <div id="scrollTopBtn" onclick="scrollToTop()">&#8679;</div>
-    <script src="js/searchProduct.js"></script>
-    <script src="js/uploadProduct.js" ></script>
-    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('cardForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const recipientName = document.getElementById('recipientName').value;
+            const personalMessage = document.getElementById('personalMessage').value;
+            const imageFile = document.getElementById('imageUpload').files[0];
+
+            document.getElementById('cardRecipient').innerText = recipientName;
+            document.getElementById('cardMessage').innerText = personalMessage;
+
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgElement = document.getElementById('cardImage');
+                    imgElement.src = e.target.result;
+                    imgElement.classList.remove('hidden');
+                }
+                reader.readAsDataURL(imageFile);
+            }
+
+            document.getElementById('cardPreview').classList.remove('hidden');
+        });
+    </script>
 </body>
 </html>
